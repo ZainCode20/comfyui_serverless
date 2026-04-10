@@ -1,0 +1,665 @@
+{
+  "input": {
+    "workflow": {
+      "100": {
+        "inputs": {
+          "value": 2.5,
+          "conditioning": [
+            "256",
+            0
+          ]
+        },
+        "class_type": "FluxGuidance",
+        "_meta": {
+          "title": "FluxGuidance"
+        }
+      },
+      "102": {
+        "inputs": {
+          "filename": "flux2-vae.safetensors"
+        },
+        "class_type": "VAELoader",
+        "_meta": {
+          "title": "VAELoader"
+        }
+      },
+      "104": {
+        "inputs": {
+          "samples": [
+            "156",
+            0
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      },
+      "107": {
+        "inputs": {
+          "text": "A photorealistic image of the person from @image1.png. All garment colors, textures, and patterns must match their respective references exactly.\n\nThe person is wearing:\nfrom @image2, Straight-cut relaxed-fit longline tunic crafted from lightweight woven fabric, detailed with a split round neckline and straight long sleeves, worn flat-lay presentation.\nKeep the exact same background, The subject must strictly hold the exact pose, body proportions and posture dictated by the OpenPose control, maintaining flawless anatomical proportions and original body size without distortion. High-resolution photorealism. clean digital file, remove blur and noise, histogram equalization, unsharp mask, color grade, white balance correction, micro-contrast, lens distortion correction.",
+          "clip": [
+            "146",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIP Text Encode (Positive Prompt)"
+        }
+      },
+      "112": {
+        "inputs": {
+          "latent": [
+            "150",
+            0
+          ]
+        },
+        "class_type": "ReferenceLatent",
+        "_meta": {
+          "title": "ReferenceLatent"
+        }
+      },
+      "121": {
+        "inputs": {
+          "image": "pngtree-a-straight-cut-kurti-in-mustard-yellow-with-intricate-png-image_15308879.png"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "Image 2"
+        }
+      },
+      "125": {
+        "inputs": {
+          "pixels": [
+            "241",
+            0
+          ]
+        },
+        "class_type": "VAEEncode",
+        "_meta": {
+          "title": "VAEEncode"
+        }
+      },
+      "135": {
+        "inputs": {
+          "value": 2
+        },
+        "class_type": "PrimitiveFloat",
+        "_meta": {
+          "title": "Float (Set Megapixels)"
+        }
+      },
+      "136": {
+        "inputs": {},
+        "class_type": "ConditioningZeroOut",
+        "_meta": {
+          "title": "ConditioningZeroOut"
+        }
+      },
+      "137": {
+        "inputs": {
+          "image": "extra.jpg"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "LoadImage"
+        }
+      },
+      "146": {
+        "inputs": {
+          "filename": "qwen_3_8b_fp8mixed.safetensors"
+        },
+        "class_type": "CLIPLoader",
+        "_meta": {
+          "title": "CLIPLoader"
+        }
+      },
+      "147": {
+        "inputs": {
+          "samples": [
+            "125",
+            0
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      },
+      "150": {
+        "inputs": {},
+        "class_type": "VAEEncode",
+        "_meta": {
+          "title": "VAEEncode"
+        }
+      },
+      "152": {
+        "inputs": {
+          "samples": [
+            "150",
+            0
+          ]
+        },
+        "class_type": "SetLatentNoiseMask",
+        "_meta": {
+          "title": "SetLatentNoiseMask"
+        }
+      },
+      "156": {
+        "inputs": {
+          "value": 262560107660599,
+          "model": [
+            "200",
+            0
+          ],
+          "positive": [
+            "217",
+            0
+          ],
+          "negative": [
+            "217",
+            1
+          ],
+          "latent_image": [
+            "162",
+            0
+          ]
+        },
+        "class_type": "LanPaint_KSampler",
+        "_meta": {
+          "title": "LanPaint_KSampler"
+        }
+      },
+      "162": {
+        "inputs": {
+          "value": true,
+          "on_false": [
+            "152",
+            0
+          ],
+          "on_true": [
+            "163",
+            0
+          ]
+        },
+        "class_type": "ComfySwitchNode",
+        "_meta": {
+          "title": "Switch (Disable Inpainting)"
+        }
+      },
+      "163": {
+        "inputs": {
+          "value": 1008,
+          "width": [
+            "212",
+            0
+          ],
+          "height": [
+            "212",
+            1
+          ]
+        },
+        "class_type": "EmptyFlux2LatentImage",
+        "_meta": {
+          "title": "EmptyFlux2LatentImage"
+        }
+      },
+      "169": {
+        "inputs": {
+          "anything": [
+            "102",
+            0
+          ],
+          "anything11": [
+            "135",
+            0
+          ]
+        },
+        "class_type": "Anything Everywhere",
+        "_meta": {
+          "title": "Anything Everywhere"
+        }
+      },
+      "177": {
+        "inputs": {
+          "anything": [
+            "107",
+            0
+          ]
+        },
+        "class_type": "Anything Everywhere",
+        "_meta": {
+          "title": "Anything Everywhere"
+        }
+      },
+      "180": {
+        "inputs": {
+          "anything14": [
+            "241",
+            0
+          ],
+          "anything16": [
+            "215",
+            0
+          ]
+        },
+        "class_type": "Anything Everywhere",
+        "_meta": {
+          "title": "Anything Everywhere"
+        }
+      },
+      "200": {
+        "inputs": {
+          "filename": "Flux2-Klein-9B-True-bf16.safetensors"
+        },
+        "class_type": "UNETLoader",
+        "_meta": {
+          "title": "UNETLoader"
+        }
+      },
+      "204": {
+        "inputs": {
+          "image": [
+            "241",
+            0
+          ]
+        },
+        "class_type": "GetImageSize",
+        "_meta": {
+          "title": "Get Original Size"
+        }
+      },
+      "208": {
+        "inputs": {
+          "upscale_method": "lanczos",
+          "width": [
+            "204",
+            0
+          ],
+          "height": [
+            "204",
+            1
+          ],
+          "crop": "disabled",
+          "image": [
+            "104",
+            0
+          ]
+        },
+        "class_type": "ImageScale",
+        "_meta": {
+          "title": "Resize to Original Size"
+        }
+      },
+      "212": {
+        "inputs": {
+          "image": [
+            "241",
+            0
+          ]
+        },
+        "class_type": "DF_Get_image_size",
+        "_meta": {
+          "title": "DF_Get_image_size"
+        }
+      },
+      "213": {
+        "inputs": {
+          "text": "2000",
+          "anything": [
+            "212",
+            0
+          ]
+        },
+        "class_type": "easy showAnything",
+        "_meta": {
+          "title": "easy showAnything"
+        }
+      },
+      "214": {
+        "inputs": {
+          "text": "2981",
+          "anything": [
+            "212",
+            1
+          ]
+        },
+        "class_type": "easy showAnything",
+        "_meta": {
+          "title": "easy showAnything"
+        }
+      },
+      "215": {
+        "inputs": {
+          "value": 50,
+          "mask": [
+            "241",
+            1
+          ]
+        },
+        "class_type": "MaskBlur+",
+        "_meta": {
+          "title": "MaskBlur+"
+        }
+      },
+      "217": {
+        "inputs": {
+          "conditioning": [
+            "100",
+            0
+          ],
+          "pixels": [
+            "222",
+            0
+          ],
+          "conditioning_1": [
+            "136",
+            0
+          ]
+        },
+        "class_type": "41de1b54-4485-4d3f-b173-22f6cdf68b5c",
+        "_meta": {
+          "title": "41de1b54-4485-4d3f-b173-22f6cdf68b5c"
+        }
+      },
+      "218": {
+        "inputs": {
+          "text": "enable",
+          "image": [
+            "241",
+            0
+          ]
+        },
+        "class_type": "DWPreprocessor",
+        "_meta": {
+          "title": "DWPreprocessor"
+        }
+      },
+      "220": {
+        "inputs": {
+          "text": "disable",
+          "image": [
+            "241",
+            0
+          ]
+        },
+        "class_type": "LineArtPreprocessor",
+        "_meta": {
+          "title": "LineArtPreprocessor"
+        }
+      },
+      "222": {
+        "inputs": {
+          "text": "right",
+          "image1": [
+            "218",
+            0
+          ],
+          "image2": [
+            "220",
+            0
+          ]
+        },
+        "class_type": "ImageStitch",
+        "_meta": {
+          "title": "ImageStitch"
+        }
+      },
+      "241": {
+        "inputs": {
+          "image": "IMOOGE-LAURA-8.jpg"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "LoadImage"
+        }
+      },
+      "243": {
+        "inputs": {
+          "conditioning": [
+            "112",
+            0
+          ],
+          "latent": [
+            "244",
+            0
+          ]
+        },
+        "class_type": "ReferenceLatent",
+        "_meta": {
+          "title": "ReferenceLatent"
+        }
+      },
+      "244": {
+        "inputs": {
+          "pixels": [
+            "245",
+            0
+          ]
+        },
+        "class_type": "VAEEncode",
+        "_meta": {
+          "title": "VAEEncode"
+        }
+      },
+      "245": {
+        "inputs": {
+          "text": "lanczos",
+          "image": [
+            "121",
+            0
+          ]
+        },
+        "class_type": "ImageScaleToTotalPixels",
+        "_meta": {
+          "title": "ImageScaleToTotalPixels"
+        }
+      },
+      "246": {
+        "inputs": {
+          "text": "lanczos",
+          "image": [
+            "264",
+            0
+          ]
+        },
+        "class_type": "ImageScaleToTotalPixels",
+        "_meta": {
+          "title": "ImageScaleToTotalPixels"
+        }
+      },
+      "247": {
+        "inputs": {
+          "pixels": [
+            "246",
+            0
+          ]
+        },
+        "class_type": "VAEEncode",
+        "_meta": {
+          "title": "VAEEncode"
+        }
+      },
+      "248": {
+        "inputs": {
+          "conditioning": [
+            "243",
+            0
+          ],
+          "latent": [
+            "247",
+            0
+          ]
+        },
+        "class_type": "ReferenceLatent",
+        "_meta": {
+          "title": "ReferenceLatent"
+        }
+      },
+      "249": {
+        "inputs": {
+          "conditioning": [
+            "248",
+            0
+          ],
+          "latent": [
+            "250",
+            0
+          ]
+        },
+        "class_type": "ReferenceLatent",
+        "_meta": {
+          "title": "ReferenceLatent"
+        }
+      },
+      "250": {
+        "inputs": {
+          "pixels": [
+            "251",
+            0
+          ]
+        },
+        "class_type": "VAEEncode",
+        "_meta": {
+          "title": "VAEEncode"
+        }
+      },
+      "251": {
+        "inputs": {
+          "text": "lanczos",
+          "image": [
+            "137",
+            0
+          ]
+        },
+        "class_type": "ImageScaleToTotalPixels",
+        "_meta": {
+          "title": "ImageScaleToTotalPixels"
+        }
+      },
+      "252": {
+        "inputs": {
+          "pixels": [
+            "254",
+            0
+          ]
+        },
+        "class_type": "VAEEncode",
+        "_meta": {
+          "title": "VAEEncode"
+        }
+      },
+      "253": {
+        "inputs": {
+          "conditioning": [
+            "249",
+            0
+          ],
+          "latent": [
+            "252",
+            0
+          ]
+        },
+        "class_type": "ReferenceLatent",
+        "_meta": {
+          "title": "ReferenceLatent"
+        }
+      },
+      "254": {
+        "inputs": {
+          "text": "lanczos",
+          "image": [
+            "265",
+            0
+          ]
+        },
+        "class_type": "ImageScaleToTotalPixels",
+        "_meta": {
+          "title": "ImageScaleToTotalPixels"
+        }
+      },
+      "255": {
+        "inputs": {
+          "pixels": [
+            "257",
+            0
+          ]
+        },
+        "class_type": "VAEEncode",
+        "_meta": {
+          "title": "VAEEncode"
+        }
+      },
+      "256": {
+        "inputs": {
+          "conditioning": [
+            "253",
+            0
+          ],
+          "latent": [
+            "255",
+            0
+          ]
+        },
+        "class_type": "ReferenceLatent",
+        "_meta": {
+          "title": "ReferenceLatent"
+        }
+      },
+      "257": {
+        "inputs": {
+          "text": "lanczos",
+          "image": [
+            "266",
+            0
+          ]
+        },
+        "class_type": "ImageScaleToTotalPixels",
+        "_meta": {
+          "title": "ImageScaleToTotalPixels"
+        }
+      },
+      "264": {
+        "inputs": {
+          "image": "extra.jpg"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "LoadImage"
+        }
+      },
+      "265": {
+        "inputs": {
+          "image": "extra.jpg"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "LoadImage"
+        }
+      },
+      "266": {
+        "inputs": {
+          "image": "extra.jpg"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "LoadImage"
+        }
+      },
+      "267": {
+        "inputs": {
+          "filename_prefix": "ComfyUI",
+          "images": [
+            "208",
+            0
+          ]
+        },
+        "class_type": "SaveImage",
+        "_meta": {
+          "title": "SaveImage"
+        }
+      }
+    }
+  }
+}
