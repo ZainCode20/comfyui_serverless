@@ -27,7 +27,7 @@ COPY entrypoint.sh /opt/entrypoint.sh
 RUN chmod +x /opt/init-models.sh /opt/entrypoint.sh
 
 ENTRYPOINT ["/opt/entrypoint.sh"]
-
+CMD ["python", "-u", "/rp_handler.py"]
 
 
 
